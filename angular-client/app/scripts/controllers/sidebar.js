@@ -9,7 +9,7 @@
  */
 angular.module('clientWorkshopApp')
     .controller('SidebarCtrl', function ($scope, $rootScope, $state, UserService, LoginService) {
-        $scope.loadingFinished = false;
+        $scope.loadingFinished = true;
         $scope.authenticated = false;
         $scope.user = {
             name: ""
@@ -31,6 +31,7 @@ angular.module('clientWorkshopApp')
         LoginService.userInfo(function (user) {
             $scope.user = user;
             $scope.authenticated = LoginService.isAuthenticated();
+            $scope.loadingFinished = true;
         });
         $scope.login = function () {
             LoginService.login($scope.signin.user, $scope.signin.password
@@ -46,7 +47,4 @@ angular.module('clientWorkshopApp')
                     $("#modalEntryError").openModal();
                 });
         };
-        $rootScope.$on('cfpLoadingBar:completed', function () {
-            $scope.loadingFinished = true;
-        });
     });

@@ -21,7 +21,7 @@ angular.module('clientWorkshopApp')
                 }
                 $scope.users.push({
                     name: key,
-                    password: key
+                    password: value
                 });
             });
         }, function (err) {
