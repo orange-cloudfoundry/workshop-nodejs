@@ -1,0 +1,15 @@
+applications:
+- name: workshop-node
+  memory: 256M
+  instances: 2
+  path: ./node-server
+  buildpack: nodejs_buildpack
+  disk_quota: 1024M
+  services:
+  - redis-workshop
+- name: workshop-angular
+  memory: 256M
+  instances: 1
+  path: ./angular-client/dist
+  buildpack: staticfile_buildpack
+  disk_quota: 1024M

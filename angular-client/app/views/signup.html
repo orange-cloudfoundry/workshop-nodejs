@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="section">
+        <div class="button-header">
+            <h2 class="header center grey-text darken-3">Sign up</h2>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12" input-field>
+                        <input id="register-user"
+                               type="text" class="validate" ng-model="user.user">
+                        <label for="register-user">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12" input-field>
+                        <input id="register-password"
+                               type="password" class="validate" ng-model="user.password">
+                        <label for="register-password">Password</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="input-field col s12" input-field>
+                        <button class="btn waves-effect waves-light blue-cf" type="submit" name="action"
+                                ng-click="signup()">Sign up
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<a class='btn' href='#modalEntry' style="display: none;" modal>Show Modal</a>
+<div id="modalEntry" class="modal">
+    <div class="modal-content valign-wrapper">
+        <div class="valign">
+            <h4 class="header center grey-text darken-3">{{modalEntry.title}}</h4>
+            <p ng-bind-html="modalEntry.content">
+            </p>
+        </div>
+    </div>
+</div>

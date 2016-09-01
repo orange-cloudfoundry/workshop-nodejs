@@ -1,0 +1,73 @@
+<nav class="blue-cf lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+            <li ng-if="!authenticated && loadingFinished"><a href='#modalLogin' modal>login</a></li>
+            <li ng-if="!authenticated && loadingFinished"><a ui-sref="signup">Sign up</a></li>
+            <li ng-if="authenticated && loadingFinished && user.name !== undefined">
+                <a ui-sref="listuser">List user</a>
+            </li>
+            <li ng-if="authenticated && loadingFinished && user.name !== undefined">
+                <a href="#" ng-click="disconnect()">Disconnect</a>
+            </li>
+            <li ng-if="authenticated && loadingFinished && user.name !== undefined">
+                <i class="material-icons left">account_circle</i><span>{{user.name}}</span>
+            </li>
+
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li ng-if="!authenticated && loadingFinished"><a href='#modalLogin' modal>login</a></li>
+            <li ng-if="!authenticated && loadingFinished"><a ui-sref="signup">Sign up</a></li>
+            <li ng-if="authenticated && loadingFinished && user.name !== undefined">
+                <a ui-sref="listuser">List user</a>
+            </li>
+            <li ng-if="authenticated && loadingFinished && user.name !== undefined">
+                <a href="#" ng-click="disconnect()">Disconnect</a>
+            </li>
+            <li ng-if="authenticated && loadingFinished && user.name !== undefined">
+                <i class="material-icons left">account_circle</i><span>{{user.name}}</span>
+            </li>
+
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<div id="modalLogin" class="modal">
+    <div class="modal-content">
+        <h4 class="header center grey-text darken-3">Connect</h4>
+        <div class="row">
+            <form class="col s12">
+                <div class="row modal-form-row">
+                    <div class="input-field col s6" input-field>
+                        <input id="signin-user"
+                               type="text" class="validate" ng-model="signin.user">
+                        <label for="signin-user">Username</label>
+                    </div>
+                    <div class="input-field col s6"></div>
+                </div>
+                <div class="row modal-form-row">
+                    <div class="input-field col s6" input-field>
+                        <input id="signin-password"
+                               type="password" class="validate" ng-model="signin.password">
+                        <label for="signin-password">Password</label>
+                    </div>
+                    <div class="input-field col s6" input-field></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="login()">Login</a>
+    </div>
+</div>
+
+<a class='btn' href='#modalEntryError' style="display: none;" modal>Show Modal</a>
+<div id="modalEntryError" class="modal">
+    <div class="modal-content valign-wrapper">
+        <div class="valign">
+            <h4 class="header center grey-text darken-3">{{modalEntryError.title}}</h4>
+            <p ng-bind-html="modalEntryError.content">
+            </p>
+        </div>
+    </div>
+</div>

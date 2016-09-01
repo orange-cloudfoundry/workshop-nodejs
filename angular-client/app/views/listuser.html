@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="section">
+        <div class="button-header">
+            <h2 class="header center grey-text darken-3">List of users</h2>
+        </div>
+        <div class="row">
+            <table class="responsive-table">
+                <thead>
+                <tr>
+                    <th data-field="name">name</th>
+                    <th data-field="title">password</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr ng-repeat="user in users">
+                    <td>{{user.name}}</td>
+                    <td>{{user.password}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+<a class='btn' href='#modalEntry' style="display: none;" modal>Show Modal</a>
+<div id="modalEntry" class="modal">
+    <div class="modal-content valign-wrapper">
+        <div class="valign">
+            <h4 class="header center grey-text darken-3">{{modalEntry.title}}</h4>
+            <p ng-bind-html="modalEntry.content">
+            </p>
+        </div>
+    </div>
+</div>
