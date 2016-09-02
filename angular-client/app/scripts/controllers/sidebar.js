@@ -9,7 +9,7 @@
  */
 angular.module('clientWorkshopApp')
     .controller('SidebarCtrl', function ($scope, $rootScope, $state, UserService, LoginService) {
-        $scope.loadingFinished = true;
+        $scope.loadingFinished = false;
         $scope.authenticated = false;
         $scope.user = {
             name: ""
@@ -19,9 +19,11 @@ angular.module('clientWorkshopApp')
             content: ""
         };
         $scope.disconnect = function () {
+            $scope.loadingFinished = false;
             LoginService.disconnect(function (isAuthenticated) {
                 $scope.user = {};
                 $scope.authenticated = isAuthenticated;
+                $scope.loadingFinished = true;
             });
         };
         $scope.signin = {
@@ -32,16 +34,21 @@ angular.module('clientWorkshopApp')
             $scope.user = user;
             $scope.authenticated = LoginService.isAuthenticated();
             $scope.loadingFinished = true;
+        }, function () {
+            $scope.loadingFinished = true;
         });
         $scope.login = function () {
+            $scope.loadingFinished = false;
             LoginService.login($scope.signin.user, $scope.signin.password
                 , function () {
                     LoginService.userInfo(function (user) {
                         $scope.user = user;
                         $scope.authenticated = LoginService.isAuthenticated();
+                        $scope.loadingFinished = true;
                     });
 
                 }, function (err) {
+                    $scope.loadingFinished = true;
                     $scope.modalEntryError.title = "Error during connection";
                     $scope.modalEntryError.content = err.message;
                     $("#modalEntryError").openModal();
